@@ -1,0 +1,8 @@
+"0","# reordering by the column 'DT.NFL.BLAT.CD'    "
+"0","debt_df <- debt_df %>%"
+"0","  arrange(desc(DT.NFL.BLAT.CD))"
+"0","# select the specifed columns and display the first 4 rows"
+"0","debt_df_sub <- debt_df %>%"
+"0","  select(""Country.Code"", ""Year"", ""NY.GNP.MKTP.CD"", ""DT.NFL.BLAT.CD"") %>%"
+"0","  head(4)"
+"0","debt_df_sub"
