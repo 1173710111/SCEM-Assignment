@@ -3,10 +3,10 @@ title: "TaskA"
 author: "zerofrom"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: null
+  latex_engine: xelatex
   html_document:
     df_print: paged
-  latex_engine: xelatex
-  pdf_document: null
 ---
 
 ```{r setup, include=FALSE}
@@ -18,6 +18,7 @@ library(dplyr)
 
 # Q1. Data Wrangling
 ```{r}
+# Set working directory and read data from CSV files into data frames
 setwd(getwd())
 debt_df <- read.csv("debt_data.csv", header = TRUE, sep = ",")
 country_df <- read.csv("country_data.csv", header = TRUE, sep = ",")
@@ -43,10 +44,13 @@ debt_df_sub
 
 # Q3. Create debt_df2 and replace indicator column names in debt_df by referring to indicator_df
 ```{r}
+# Reorder debt_df 
 column_mapping <-setNames(indicator_df$INDICATOR_NAME, indicator_df$INDICATOR_CODE)
 column_mapping[c("Country.Code", "Year")] <- c("Country.Code", "Year")
 debt_df2 <- debt_df %>%
   rename_with(~column_mapping[.x],.cols = names(debt_df)) 
+
+# Select specified columns
 debt_df2_sub <- debt_df2 %>%
   select("Country.Code","Year","Net financial flows, others (NFL, current US$)") %>%
   head(5)
@@ -55,14 +59,18 @@ debt_df2_sub
 
 # Q4. Combine two data frames: debt_df and country_df
 ```{r}
+# Select specified columns
 country_df_select <- country_df %>%
   select("Country.Code","Region","IncomeGroup","Country.Name")
 debt_df3 <- debt_df2 %>%
   left_join(country_df_select, by = "Country.Code")
+# Check the number of columns
 # ncol2=ncol(debt_df2)
 # ncol3=ncol(debt_df3)
 # print(paste("debt_df2:The number of columns:", ncol2))
 # print(paste("debt_df3:The number of columns:", ncol3))
+
+# Preview the merged data with selected columns
 debt_df3_sub <- debt_df3 %>%
   select("Country.Name","IncomeGroup", "Year", "Total reserves in months of imports") %>%
   head(3)
@@ -71,6 +79,7 @@ debt_df3_sub
 
 # Q5. Rename 5 columns from their original names to the new names
 ```{r}
+# Rename specified columns in debt_df3
 debt_df3 <- debt_df3 %>%
   rename(
     Total_reserves = 'Total reserves in months of imports',
@@ -79,6 +88,8 @@ debt_df3 <- debt_df3 %>%
     Imports = 'Imports of goods, services and primary income (BoP, current US$)',
     IFC = 'IFC, private nonguaranteed (NFL, US$)'
   )
+
+# Select and preview the renamed columns
 debt_df3_sub2 <- debt_df3 %>%
   select('Country.Code','Year','Total_reserves','External_debt','Financial_flow','Imports','IFC') %>%
   head(5)
@@ -87,5 +98,56 @@ debt_df3_sub2
 
 # Q6. Create debt_summary
 ```{r}
+# Group data by Region and calculate summary statistics
+debt_summary <- debt_df3 %>%
+  group_by(Region) %>%
+  summarize(
+    TR_mn = mean(Total_reserves, na.rm = TRUE),
+    ED_md = median(External_debt, na.rm = TRUE),
+    FF_quantile = quantile(Financial_flow, 0.2, na.rm = TRUE),
+    IFC_sd = sd(IFC, na.rm = TRUE)
+  )
+print(debt_summary)
 
+```
+
+# Q7. Create a violin plot of "Financial_flow" for each of the regions.
+```{r}
+# Filter out missing and extreme values
+debt_filter_df <- debt_df3 %>%
+  filter(!is.na(Financial_flow)) %>%
+  filter(Financial_flow >-10^8 & Financial_flow < 10^8)
+
+#Check columns' names
+#names(debt_filter_df)
+
+#Create a violin polt
+ggplot(debt_filter_df, aes( x = Financial_flow, y = Region, color = Region)) +
+  geom_violin() +
+  labs( x = "Financial_flow", y = "Region") +
+  theme_minimal() 
+```
+
+# Q8. Create a plot which displays the "Total_reserves" as a function of the years (from 1960 to 2023)
+```{r}
+# Select specified Country and Years
+debt_filter_df2 <- debt_df3 %>%
+  filter(Country.Name %in% c("Italy", "France", "United Kingdom", "Sudan", "Afghanistan", "Brazil")) %>%
+  mutate(Year = as.numeric(stringr::str_extract(Year, "\\d{4}"))) %>% 
+  filter(Year >= '1960' & Year <= '2023') %>%
+  filter(!is.na(Total_reserves)) 
+
+# Create a plot
+ggplot(debt_filter_df2, aes(x = Year, y = Total_reserves, color = Country.Name)) +
+  geom_line(linewidth = 0.5) +
+  geom_point(size = 1 # Add points
+             ) +
+  labs(x = "Year", y = "Total Reserves", color = "Country Name") +
+  facet_wrap(~ IncomeGroup) + 
+  theme(
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5)  
+    # Add black border to each panel
+  ) +
+  scale_x_continuous(breaks=seq(1960,2023,by=10)) 
+# Set X axis ticks every 10 years
 ```

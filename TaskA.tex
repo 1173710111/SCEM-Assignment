@@ -1,0 +1,363 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={TaskA},
+  pdfauthor={zerofrom},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{TaskA}
+\author{zerofrom}
+\date{2024-11-17}
+
+\begin{document}
+\maketitle
+
+\section{Q1. Data Wrangling}\label{q1.-data-wrangling}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set working directory and read data from CSV files into data frames}
+\FunctionTok{setwd}\NormalTok{(}\FunctionTok{getwd}\NormalTok{())}
+\NormalTok{debt\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"debt\_data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\NormalTok{country\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"country\_data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\NormalTok{indicator\_df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"indicator\_data.csv"}\NormalTok{, }\AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\CommentTok{\#head(debt\_df)}
+\CommentTok{\#summary(debt\_df)}
+\NormalTok{numCol }\OtherTok{=} \FunctionTok{ncol}\NormalTok{(debt\_df)}
+\NormalTok{numRow }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(debt\_df)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"debt\_df: The number of columns: "}\NormalTok{,numCol))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "debt_df: The number of columns:  63"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"debt\_df: The number of rows: "}\NormalTok{,numRow))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "debt_df: The number of rows:  13824"
+\end{verbatim}
+
+\section{Q2.Update data frame by
+reordering}\label{q2.update-data-frame-by-reordering}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# reordering by the column \textquotesingle{}DT.NFL.BLAT.CD\textquotesingle{}    }
+\NormalTok{debt\_df }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(DT.NFL.BLAT.CD))}
+\CommentTok{\# select the specifed columns and display the first 4 rows}
+\NormalTok{debt\_df\_sub }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"NY.GNP.MKTP.CD"}\NormalTok{, }\StringTok{"DT.NFL.BLAT.CD"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{4}\NormalTok{)}
+\NormalTok{debt\_df\_sub}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Country.Code      Year NY.GNP.MKTP.CD DT.NFL.BLAT.CD
+## 1          MEX year_1995    3.66827e+11     9398190731
+## 2          EGY year_2013    2.81028e+11     7233642176
+## 3          BRA year_2017    2.02494e+12     6506490468
+## 4          PAK year_2018    3.50691e+11     6201281870
+\end{verbatim}
+
+\section{Q3. Create debt\_df2 and replace indicator column names in
+debt\_df by referring to
+indicator\_df}\label{q3.-create-debt_df2-and-replace-indicator-column-names-in-debt_df-by-referring-to-indicator_df}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reorder debt\_df }
+\NormalTok{column\_mapping }\OtherTok{\textless{}{-}}\FunctionTok{setNames}\NormalTok{(indicator\_df}\SpecialCharTok{$}\NormalTok{INDICATOR\_NAME, indicator\_df}\SpecialCharTok{$}\NormalTok{INDICATOR\_CODE)}
+\NormalTok{column\_mapping[}\FunctionTok{c}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{, }\StringTok{"Year"}\NormalTok{)] }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{, }\StringTok{"Year"}\NormalTok{)}
+\NormalTok{debt\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename\_with}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{column\_mapping[.x],}\AttributeTok{.cols =} \FunctionTok{names}\NormalTok{(debt\_df)) }
+
+\CommentTok{\# Select specified columns}
+\NormalTok{debt\_df2\_sub }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{,}\StringTok{"Year"}\NormalTok{,}\StringTok{"Net financial flows, others (NFL, current US$)"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{debt\_df2\_sub}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Country.Code      Year Net financial flows, others (NFL, current US$)
+## 1          MEX year_1995                                             NA
+## 2          EGY year_2013                                      -14314777
+## 3          BRA year_2017                                     -195705180
+## 4          PAK year_2018                                      321846510
+## 5          EGY year_2016                                     2141976215
+\end{verbatim}
+
+\section{Q4. Combine two data frames: debt\_df and
+country\_df}\label{q4.-combine-two-data-frames-debt_df-and-country_df}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select specified columns}
+\NormalTok{country\_df\_select }\OtherTok{\textless{}{-}}\NormalTok{ country\_df }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{"Country.Code"}\NormalTok{,}\StringTok{"Region"}\NormalTok{,}\StringTok{"IncomeGroup"}\NormalTok{,}\StringTok{"Country.Name"}\NormalTok{)}
+\NormalTok{debt\_df3 }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df2 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{left\_join}\NormalTok{(country\_df\_select, }\AttributeTok{by =} \StringTok{"Country.Code"}\NormalTok{)}
+\CommentTok{\# Check the number of columns}
+\CommentTok{\# ncol2=ncol(debt\_df2)}
+\CommentTok{\# ncol3=ncol(debt\_df3)}
+\CommentTok{\# print(paste("debt\_df2:The number of columns:", ncol2))}
+\CommentTok{\# print(paste("debt\_df3:The number of columns:", ncol3))}
+
+\CommentTok{\# Preview the merged data with selected columns}
+\NormalTok{debt\_df3\_sub }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{"Country.Name"}\NormalTok{,}\StringTok{"IncomeGroup"}\NormalTok{, }\StringTok{"Year"}\NormalTok{, }\StringTok{"Total reserves in months of imports"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{3}\NormalTok{)}
+\NormalTok{debt\_df3\_sub}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Country.Name         IncomeGroup      Year
+## 1           Mexico Upper middle income year_1995
+## 2 Egypt, Arab Rep. Lower middle income year_2013
+## 3           Brazil Upper middle income year_2017
+##   Total reserves in months of imports
+## 1                            2.825546
+## 2                            2.730040
+## 3                           14.861069
+\end{verbatim}
+
+\section{Q5. Rename 5 columns from their original names to the new
+names}\label{q5.-rename-5-columns-from-their-original-names-to-the-new-names}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rename specified columns in debt\_df3}
+\NormalTok{debt\_df3 }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{rename}\NormalTok{(}
+    \AttributeTok{Total\_reserves =} \StringTok{\textquotesingle{}Total reserves in months of imports\textquotesingle{}}\NormalTok{,}
+    \AttributeTok{External\_debt =} \StringTok{\textquotesingle{}External debt stocks, total (DOD, current US$)\textquotesingle{}}\NormalTok{,}
+    \AttributeTok{Financial\_flow =} \StringTok{\textquotesingle{}Net financial flows, bilateral (NFL, current US$)\textquotesingle{}}\NormalTok{,}
+    \AttributeTok{Imports =} \StringTok{\textquotesingle{}Imports of goods, services and primary income (BoP, current US$)\textquotesingle{}}\NormalTok{,}
+    \AttributeTok{IFC =} \StringTok{\textquotesingle{}IFC, private nonguaranteed (NFL, US$)\textquotesingle{}}
+\NormalTok{  )}
+
+\CommentTok{\# Select and preview the renamed columns}
+\NormalTok{debt\_df3\_sub2 }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(}\StringTok{\textquotesingle{}Country.Code\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Year\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Total\_reserves\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}External\_debt\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Financial\_flow\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Imports\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}IFC\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{debt\_df3\_sub2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Country.Code      Year Total_reserves External_debt Financial_flow
+## 1          MEX year_1995       2.825546  166734000000     9398190731
+## 2          EGY year_2013       2.730040   46534987115     7233642176
+## 3          BRA year_2017      14.861069  543000000000     6506490468
+## 4          PAK year_2018       1.905231  100199000000     6201281870
+## 5          EGY year_2016       3.885411   69188517055     5714011601
+##        Imports       IFC
+## 1  72391910000         0
+## 2  72685700000 -42864095
+## 3 301961000000 397855350
+## 4  74555877000  11389136
+## 5  73019900000  77244772
+\end{verbatim}
+
+\section{Q6. Create debt\_summary}\label{q6.-create-debt_summary}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Group data by Region and calculate summary statistics}
+\NormalTok{debt\_summary }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Region) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}
+    \AttributeTok{TR\_mn =} \FunctionTok{mean}\NormalTok{(Total\_reserves, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{ED\_md =} \FunctionTok{median}\NormalTok{(External\_debt, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{FF\_quantile =} \FunctionTok{quantile}\NormalTok{(Financial\_flow, }\FloatTok{0.2}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
+    \AttributeTok{IFC\_sd =} \FunctionTok{sd}\NormalTok{(IFC, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  )}
+\FunctionTok{print}\NormalTok{(debt\_summary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 7 x 5
+##   Region                     TR_mn      ED_md FF_quantile    IFC_sd
+##   <chr>                      <dbl>      <dbl>       <dbl>     <dbl>
+## 1 East Asia & Pacific         5.19 2248479410   -2357020. 52498519.
+## 2 Europe & Central Asia       3.58 8237728122  -53631246. 50820255.
+## 3 Latin America & Caribbean   3.84 4159662669  -25144268. 62054545.
+## 4 Middle East & North Africa  7.72 7481954468  -92269932. 21414719.
+## 5 North America               1.99         NA         NA        NA 
+## 6 South Asia                  4.94 4940329805    -373253. 76630044.
+## 7 Sub-Saharan Africa          3.32 1709094992   -1673594. 24748455.
+\end{verbatim}
+
+\section{Q7. Create a violin plot of ``Financial\_flow'' for each of the
+regions.}\label{q7.-create-a-violin-plot-of-financial_flow-for-each-of-the-regions.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filter out missing and extreme values}
+\NormalTok{debt\_filter\_df }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(Financial\_flow)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Financial\_flow }\SpecialCharTok{\textgreater{}{-}}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{8} \SpecialCharTok{\&}\NormalTok{ Financial\_flow }\SpecialCharTok{\textless{}} \DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{8}\NormalTok{)}
+
+\CommentTok{\#Check columns\textquotesingle{} names}
+\CommentTok{\#names(debt\_filter\_df)}
+
+\CommentTok{\#Create a violin polt}
+\FunctionTok{ggplot}\NormalTok{(debt\_filter\_df, }\FunctionTok{aes}\NormalTok{( }\AttributeTok{x =}\NormalTok{ Financial\_flow, }\AttributeTok{y =}\NormalTok{ Region, }\AttributeTok{color =}\NormalTok{ Region)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_violin}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{( }\AttributeTok{x =} \StringTok{"Financial\_flow"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Region"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TaskA_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\section{Q8. Create a plot which displays the ``Total\_reserves'' as a
+function of the years (from 1960 to
+2023)}\label{q8.-create-a-plot-which-displays-the-total_reserves-as-a-function-of-the-years-from-1960-to-2023}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Select specified Country and Years}
+\NormalTok{debt\_filter\_df2 }\OtherTok{\textless{}{-}}\NormalTok{ debt\_df3 }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(Country.Name }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Italy"}\NormalTok{, }\StringTok{"France"}\NormalTok{, }\StringTok{"United Kingdom"}\NormalTok{, }\StringTok{"Sudan"}\NormalTok{, }\StringTok{"Afghanistan"}\NormalTok{, }\StringTok{"Brazil"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Year =} \FunctionTok{as.numeric}\NormalTok{(stringr}\SpecialCharTok{::}\FunctionTok{str\_extract}\NormalTok{(Year, }\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{d\{4\}"}\NormalTok{))) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{filter}\NormalTok{(Year }\SpecialCharTok{\textgreater{}=} \StringTok{\textquotesingle{}1960\textquotesingle{}} \SpecialCharTok{\&}\NormalTok{ Year }\SpecialCharTok{\textless{}=} \StringTok{\textquotesingle{}2023\textquotesingle{}}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(Total\_reserves)) }
+
+\CommentTok{\# Create a plot}
+\FunctionTok{ggplot}\NormalTok{(debt\_filter\_df2, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Year, }\AttributeTok{y =}\NormalTok{ Total\_reserves, }\AttributeTok{color =}\NormalTok{ Country.Name)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{size =} \DecValTok{1} \CommentTok{\# Add points}
+\NormalTok{             ) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Year"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Total Reserves"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Country Name"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{facet\_wrap}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ IncomeGroup) }\SpecialCharTok{+} 
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{panel.border =} \FunctionTok{element\_rect}\NormalTok{(}\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{fill =} \ConstantTok{NA}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{0.5}\NormalTok{)  }
+    \CommentTok{\# Add black border to each panel}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks=}\FunctionTok{seq}\NormalTok{(}\DecValTok{1960}\NormalTok{,}\DecValTok{2023}\NormalTok{,}\AttributeTok{by=}\DecValTok{10}\NormalTok{)) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TaskA_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Set X axis ticks every 10 years}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
