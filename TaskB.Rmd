@@ -1,0 +1,83 @@
+---
+title: "TaskB"
+author: "zerofrom"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### B. 1
+(1) Considering that $p(x)$ satisfies the Exponential Distribution:
+
+$$
+p_{\lambda}(x)= \begin{cases}a e^{-\lambda(x-b)} & \text { if } x \geqslant b,  \tag{1}\\ 0 & \text { if } x<b,\end{cases}
+$$
+
+The probability density function $p_{\lambda}(x)$ must be satisfied:
+
+$$
+\begin{equation*}
+\int_{-\infty}^{\infty} p_{x}(x) d x=1 \tag{2}
+\end{equation*}
+$$
+
+Since $p_{\lambda}(x)=0$ when $x<b$, it follows that:
+
+$$
+\begin{equation*}
+\int_{b}^{\infty} p_{\lambda}(x) d x=1 \tag{3}
+\end{equation*}
+$$
+
+Substituting expression (1) into expression (3) yields:
+
+$$
+\begin{equation*}
+\int_{b}^{\infty} a e^{-\lambda(x-b)} d x=1 \tag{4}
+\end{equation*}
+$$
+
+Assuming that $u=x-b$, it can be obtained that:
+
+$$
+\begin{equation*}
+x=u+b, d x=d u \tag{5}
+\end{equation*}
+$$
+
+Assuming that $x=b$, then $u=0$, therefore the upper and lower limits of integration become $0 \rightarrow \infty$, substituting expression $(s)$ :
+
+$$
+\begin{equation*}
+\int_{0}^{\infty} a e^{-\lambda u} d u=1 \tag{6}
+\end{equation*}
+$$
+
+Using the exponential integration formula:
+
+$$
+\begin{equation*}
+\int_{0}^{\infty} e^{-a u} d u=\frac{1}{a} \tag{7}
+\end{equation*}
+$$
+
+Thus:
+
+$$
+\begin{equation*}
+a \cdot \frac{1}{\lambda}=1 \tag{8}
+\end{equation*}
+$$
+
+The solution is:
+
+$$
+a=\frac{1}{\lambda} \tag{9}
+$$
+
+In conclusion, the value of $a$ is $\frac{1}{\lambda}$.
+
+

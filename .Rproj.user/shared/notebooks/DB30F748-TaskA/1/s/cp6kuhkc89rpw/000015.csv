@@ -1,8 +1,0 @@
-"0","column_mapping <-setNames(indicator_df$INDICATOR_NAME, indicator_df$INDICATOR_CODE)"
-"0","column_mapping[c(""Country.Code"", ""Year"")] <- c(""Country.Code"", ""Year"")"
-"0","debt_df2 <- debt_df %>%"
-"0","  rename_with(~column_mapping[.x],.cols = names(debt_df)) "
-"0","debt_df2_sub <- debt_df2 %>%"
-"0","  select(""Country.Code"",""Year"",""Net financial flows, others (NFL, current US$)"") %>%"
-"0","  head(5)"
-"0","debt_df2_sub"
