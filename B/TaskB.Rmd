@@ -3,10 +3,10 @@ title: "TaskB1"
 author: "zerofrom"
 date: "`r Sys.Date()`"
 output:
+  pdf_document: null
+  latex_engine: xelatex
   html_document:
     df_print: paged
-  latex_engine: xelatex
-  pdf_document: null
 ---
 
 ```{r setup, include=FALSE}
@@ -360,7 +360,7 @@ lambda_function <- function(data, b){
 }
 
 # Load Data
-supermarket_data <- read.csv("supermarket_data_2024.csv")
+supermarket_data <- read.csv("data\\supermarket_data_2024.csv")
 # Set the number of sample
 n <- nrow(supermarket_data)
 # Set the constant b

@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 library(Stat2Data)
 library(dplyr)
@@ -20,9 +20,9 @@ library(dplyr)
 ```{r}
 # Set working directory and read data from CSV files into data frames
 setwd(getwd())
-debt_df <- read.csv("debt_data.csv", header = TRUE, sep = ",")
-country_df <- read.csv("country_data.csv", header = TRUE, sep = ",")
-indicator_df <- read.csv("indicator_data.csv", header = TRUE, sep = ",")
+debt_df <- read.csv("data\\debt_data.csv", header = TRUE, sep = ",")
+country_df <- read.csv("data\\country_data.csv", header = TRUE, sep = ",")
+indicator_df <- read.csv("data\\indicator_data.csv", header = TRUE, sep = ",")
 #head(debt_df)
 #summary(debt_df)
 numCol = ncol(debt_df)

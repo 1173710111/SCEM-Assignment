@@ -1,0 +1,75 @@
+---
+title: "TaskC"
+author: "zerofrom"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  latex_engine: xelatex
+  pdf_document: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(ggplot2)
+```
+## Step 1: Data preparation
+```{r}
+# Load data
+game_data <- read.csv("data\\vgsales.csv")
+# Filter the desired columns: independent variables, dependent variables
+game_filter_data <- game_data %>%
+  filter(!is.na(Genre)) %>%
+  select('Genre','Global_Sales')
+
+# Grouping statistics, sorting
+# Filter the top Genres with the highest number
+top_genres <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(Count=n()) %>%
+  arrange(desc(Count)) %>%
+  slice_head(n=4) 
+
+# Data filtering: filtering data and valid data
+game_filter_data <- game_filter_data %>%
+  filter(Genre %in% top_genres$Genre & !is.na(Global_Sales))
+#print(nrow(game_filter_data))
+```
+
+### Setp 2:  Data visualisation and Intuitive understanding of data characteristics
+```{r}
+ggplot(game_filter_data,
+       aes(x=Genre, y=Global_Sales))+
+  geom_boxplot()+
+  labs(
+    x = "Game Genre",
+    y = "Global Sales(in millions)"
+  )+
+  theme_minimal()
+```
+
+### Step 3: Normality test
+```{r}
+shapiro_results <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(p_value = shapiro.test(Global_Sales)$p.value)
+
+print(shapiro_results)
+
+# On comparison, the p-value for each group was less than 0.05, which does not satisfy normal distribution.
+# Therefore, a logarithmic transformation was done on the source data.
+game_filter_data <- game_filter_data %>%
+  mutate(Log_Global_Sales = log(Global_Sales+1))
+
+# Re-testing normality
+shapiro_results <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(p_value = shapiro.test(Log_Global_Sales)$p.value)
+
+print(shapiro_results)
+
+# Data still do not satisfy normal distribution.
+# Use of non-parametric tests.
+```
+

@@ -37,46 +37,6 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -108,7 +68,7 @@
 
 \title{TaskB1}
 \author{zerofrom}
-\date{2024-11-24}
+\date{2024-11-25}
 
 \begin{document}
 \maketitle
@@ -465,57 +425,12 @@ for \(x\) is
 likelihood estimate λMLE of the parameter
 λ.}\label{given-the-sample-compute-and-display-the-maximum-likelihood-estimate-ux3bbmle-of-the-parameter-ux3bb.}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#Creating a lambda value calculation function}
-\NormalTok{lambda\_function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, b)\{}
-\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(data)}
-  \CommentTok{\# Calculating the denominator: summing over x {-} b}
-\NormalTok{  sum\_i }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{{-}}\NormalTok{b)}
-  \CommentTok{\# Calculating lembda}
-\NormalTok{  lambda }\OtherTok{\textless{}{-}}\NormalTok{ n}\SpecialCharTok{/}\NormalTok{sum\_i}
-  \FunctionTok{return}\NormalTok{(lambda)}
-\NormalTok{\}}
-
-\CommentTok{\# Load Data}
-\NormalTok{supermarket\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"supermarket\_data\_2024.csv"}\NormalTok{)}
-\CommentTok{\# Set the number of sample}
-\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(supermarket\_data)}
-\CommentTok{\# Set the constant b}
-\NormalTok{b }\OtherTok{\textless{}{-}}\DecValTok{300}
-
-\NormalTok{lambda\_mle }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(supermarket\_data}\SpecialCharTok{$}\NormalTok{TimeLength , b)}
-\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"The maximum likelihood estimate lambda\_MLE is: "}\NormalTok{,lambda\_mle))}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ## [1] "The maximum likelihood estimate lambda_MLE is:  0.019884260798572"
 \end{verbatim}
 
 \subsubsection{(6) Compute the Bootstrap confidence
 interval}\label{compute-the-bootstrap-confidence-interval}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# set the random seed}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2024}\NormalTok{)}
-\CommentTok{\# set the number of resamples}
-\NormalTok{number\_resamples }\OtherTok{\textless{}{-}} \DecValTok{10000}
-
-\NormalTok{lambda\_resamples }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(number\_resamples)}
-\CommentTok{\# Sampling with replacement}
-\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{number\_resamples)\{}
-\NormalTok{  sample\_data }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(supermarket\_data}\SpecialCharTok{$}\NormalTok{TimeLength , }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
-\NormalTok{  lambda\_resamples[i] }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(sample\_data, b)}
-\NormalTok{\}}
-
-\CommentTok{\#Calculate the 95\% confidence interval}
-\NormalTok{  ci\_lower }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(lambda\_resamples, }\FloatTok{0.025}\NormalTok{)}
-\NormalTok{  ci\_upper }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(lambda\_resamples, }\FloatTok{0.975}\NormalTok{)}
-  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"The Bootstrap confidence interval is: ["}\NormalTok{,ci\_lower,}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{,ci\_upper,}\StringTok{\textquotesingle{}]}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1] "The Bootstrap confidence interval is: [ 0.0191115894121709 , 0.0206792527343937 ]\n"
@@ -526,39 +441,6 @@ of the maximum likelihood estimator λMLE for λ on simulated data X1, · ·
 · ,
 Xn}\label{conduct-a-simulation-study-to-explore-the-behaviour-of-the-maximum-likelihood-estimator-ux3bbmle-for-ux3bb-on-simulated-data-x1-xn}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Simulation parameters}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2024}\NormalTok{)}
-\NormalTok{lambda\_simulation }\OtherTok{\textless{}{-}} \DecValTok{2}
-\NormalTok{b\_simulation }\OtherTok{\textless{}{-}} \FloatTok{0.01}
-\NormalTok{sampleSize\_simulation }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
-\NormalTok{repetition\_simulation }\OtherTok{\textless{}{-}} \DecValTok{100}
-
-\CommentTok{\# Simulation results}
-\NormalTok{simulation\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{SampleSize =}\NormalTok{ sampleSize\_simulation, }\AttributeTok{MSE =} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(sampleSize\_simulation)))}
-
-
-\CommentTok{\# Start simulation}
-\NormalTok{index }\OtherTok{\textless{}{-}} \DecValTok{1}
-\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in}\NormalTok{ sampleSize\_simulation)\{}
-\NormalTok{  lambda\_estimates}\OtherTok{\textless{}{-}}\FunctionTok{numeric}\NormalTok{(repetition\_simulation)}
-  \CommentTok{\#For each sample size, consider 100 trials.}
-  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{repetition\_simulation)\{}
-\NormalTok{    sample\_data }\OtherTok{\textless{}{-}} \FunctionTok{rexp}\NormalTok{(n, }\AttributeTok{rate =}\NormalTok{ lambda\_simulation) }\SpecialCharTok{+}\NormalTok{ b\_simulation}
-\NormalTok{    lambda\_estimates[i] }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(sample\_data,b\_simulation)}
-\NormalTok{  \}}
-  \CommentTok{\#Calculate mean and Mean Squared Error(MSE)}
-\NormalTok{  mse }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{((lambda\_estimates}\SpecialCharTok{{-}}\NormalTok{lambda\_simulation)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{  simulation\_results[index, }\StringTok{"MSE"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ mse}
-\NormalTok{  index }\OtherTok{\textless{}{-}}\NormalTok{ index}\SpecialCharTok{+}\DecValTok{1}
-\NormalTok{\}}
-
-\CommentTok{\#Check the result}
-\FunctionTok{head}\NormalTok{(simulation\_results,}\DecValTok{5}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 ##   SampleSize        MSE
 ## 1        100 0.04507438
@@ -567,16 +449,6 @@ Xn}\label{conduct-a-simulation-study-to-explore-the-behaviour-of-the-maximum-lik
 ## 4        130 0.03197187
 ## 5        140 0.02650689
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#Plotting results of the simulation}
-\FunctionTok{ggplot}\NormalTok{(simulation\_results,}
-       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SampleSize, }\AttributeTok{y=}\NormalTok{MSE))}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Sample Size"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Mean Squared Error"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \includegraphics{TaskB_files/figure-latex/unnamed-chunk-3-1.pdf}
 
@@ -604,8 +476,9 @@ Event 2: Draw 1 red ball and 1 blue ball \((x=0)\)
 
 \[
 \begin{aligned}
-& C(a, 1) \cdot C(b, 1)=a \cdot b \\
-\therefore  & P(x=0)=\frac{C(a, 1) C(b, 1)}{C(a+b, 2)}=\frac{a b}{(a+b)(a+b-1)}
+& C(a, 1) \cdot C(b, 1)+C(b, 1) \cdot C(a, 1)=2 \cdot a \cdot b \\
+\therefore  & P(X=0)=\frac{C(a, 1) C(b, 1)+C(b, 1) C(a, 1)}{C(a+b, 2)}\\
+&=\frac{2 a b}{(a+b)(a+b-1)}
 \end{aligned}
 \]
 
@@ -623,7 +496,7 @@ function
 pros:}\label{in-conclustion-the-formula-for-the-probability-mass-function-pros}
 
 \[
-P(x)= \begin{cases}\frac{b(b-1)}{(a+b)(a+b-1)} & , x=-2 \\ \frac{a b}{(a+b)(a+b-1)} & , x=0 \\ \frac{a(a-1)}{(a+b)(a+b-1)} & , x=2\end{cases}
+P(x)= \begin{cases}\frac{b(b-1)}{(a+b)(a+b-1)} & , x=-2 \\ \frac{2a b}{(a+b)(a+b-1)} & , x=0 \\ \frac{a(a-1)}{(a+b)(a+b-1)} & , x=2\end{cases}
 \]
 
 \subsubsection{(2) The expression of the
@@ -633,7 +506,7 @@ According to the expectation formula for random variables:
 
 \[
 \begin{equation*}
-E(x)=\sum_{x \in\{-2,0,2\}} x \cdot p(x=x) \tag{1}
+E(X)=\sum_{x \in\{-2,0,2\}} x \cdot P(X=x) \tag{1}
 \end{equation*}
 \]
 
@@ -662,7 +535,7 @@ According to the formula of \(E\left(X^{2}\right)\) :
 
 \[
 \begin{equation*}
-E\left(x^{2}\right)=\int_{x \in\{-10,2\}} x^{2} \cdot P(x=x) \tag{1}
+E\left(X^{2}\right)=\sum_{x \in\{-2,0,2\}} x^{2} \cdot P(X=x) \tag{1}
 \end{equation*}
 \]
 
@@ -701,34 +574,11 @@ a and b as inputs and outputs the expectation E(X). Write a function
 called compute\_variance\_X that takes a and b as input and outputs the
 variance Var(X).
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# The function of E(X)}
-\NormalTok{compute\_expectation\_X }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(a,b)\{}
-\NormalTok{  f1 }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{+}\NormalTok{b)}
-\NormalTok{  f2 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{b}\DecValTok{{-}1}\NormalTok{)}
-\NormalTok{  expectation }\OtherTok{=}\NormalTok{ f1}\SpecialCharTok{/}\NormalTok{f2}
-  \FunctionTok{return}\NormalTok{(expectation)}
-\NormalTok{\}}
+\subsubsection{(5) The expression of the expectation of the random
+variable
+X}\label{the-expression-of-the-expectation-of-the-random-variable-x}
 
-\CommentTok{\# The function of Var(x)}
-\NormalTok{compute\_variance\_X }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(a,b)\{}
-  \CommentTok{\#f1 \textless{}{-} (a + b) * (a + b {-} 1)                }
-  \CommentTok{\#f2 \textless{}{-} 4 * (a * (a {-} 1) + b * (b {-} 1)) / f1  }
-  \CommentTok{\#f3 \textless{}{-} 4 * (a\^{}2 {-} b\^{}2 {-} a + b)\^{}2 / f1\^{}2  }
-  \CommentTok{\#variance \textless{}{-} f2{-}f3           }
-\NormalTok{  f1 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{b}\DecValTok{{-}1}\NormalTok{)}
-\NormalTok{  f2 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{{-}}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{f1}
-\NormalTok{  f3 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{\^{}}\DecValTok{2}
-\NormalTok{  variance }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{4}\SpecialCharTok{*}\NormalTok{f2}\DecValTok{{-}4}\SpecialCharTok{*}\NormalTok{f3)}\SpecialCharTok{/}\NormalTok{f1}\SpecialCharTok{\^{}}\DecValTok{2}
-  \FunctionTok{return}\NormalTok{(variance)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\subsubsection{(5) According to the linear nature of the mean of a
-random
-variable:}\label{according-to-the-linear-nature-of-the-mean-of-a-random-variable}
+According to the linear nature of the mean of a random variable:
 
 \[
 \begin{equation*}
@@ -740,24 +590,27 @@ E(\bar{X})=E\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right)=\frac{1}{n} \sum_{i=1}
 
 \[
 \begin{equation*}
-E(\bar{X})=\frac{1}{n} \cdot n \cdot E(X)=E(X) \tag{2}
+E(\bar{X})=\frac{1}{n} \cdot n \cdot E(X)=E(X) \tag{2} 
 \end{equation*}
 \]
 
 \subsubsection{\texorpdfstring{In conclusion, the expression of the
 expectation of the random variable \(\bar{x}\) is:
-\(E(\bar{x})=\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}\)}{In conclusion, the expression of the expectation of the random variable \textbackslash bar\{x\} is: E(\textbackslash bar\{x\})=\textbackslash frac\{2\textbackslash left(a\^{}\{2\}-b\^{}\{2\}-a+b\textbackslash right)\}\{(a+b)(a+b-1)\}}}\label{in-conclusion-the-expression-of-the-expectation-of-the-random-variable-barx-is-ebarxfrac2lefta2-b2-abrightabab-1}
+\(E(\bar{X})=\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}\)}{In conclusion, the expression of the expectation of the random variable \textbackslash bar\{x\} is: E(\textbackslash bar\{X\})=\textbackslash frac\{2\textbackslash left(a\^{}\{2\}-b\^{}\{2\}-a+b\textbackslash right)\}\{(a+b)(a+b-1)\}}}\label{in-conclusion-the-expression-of-the-expectation-of-the-random-variable-barx-is-ebarxfrac2lefta2-b2-abrightabab-1}
 
-\#\#\#(6) Considering the effect of a linear transformation of a random
-variable on the variance :
+\subsubsection{(6) The expression of the variance of the random variable
+X}\label{the-expression-of-the-variance-of-the-random-variable-x}
+
+Considering the effect of a linear transformation of a random variable
+on the variance :
 
 \[
 \begin{equation*}
-& \operatorname{Var}(a x+b)=a^{2} \operatorname{Var}(x)  \tag{1}\\
+\operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X)  \tag{1}\\
 \end{equation*}
 \] thus: \[
 \begin{align*}
-&\operatorname{Var}(\bar{x})=\operatorname{Var}\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right) \\
+&\operatorname{Var}(\bar{X})=\operatorname{Var}\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right) \\
 &=\frac{1}{n^{2}} \operatorname{Var}\left(\sum_{i=1}^{n} X_{i}\right) \\
 &=\frac{1}{n^{2}} \cdot n \operatorname{Var}(X) \\
 &=\frac{1}{n} \operatorname{Var}(X) \tag{2}
@@ -765,11 +618,68 @@ variable on the variance :
 \]
 
 \subsubsection{\texorpdfstring{In conclusion, the expression of the
-variance of the random variable \(\bar{x}\)
-is}{In conclusion, the expression of the variance of the random variable \textbackslash bar\{x\} is}}\label{in-conclusion-the-expression-of-the-variance-of-the-random-variable-barx-is}
+variance of the random variable \(\bar{X}\)
+is}{In conclusion, the expression of the variance of the random variable \textbackslash bar\{X\} is}}\label{in-conclusion-the-expression-of-the-variance-of-the-random-variable-barx-is}
 
 \[
 \operatorname{Var}(\bar{X})=\frac{4\left(a^{2}+b^{2}-a-b\right)(a+b)(a+b-1)-4\left(a^{2}-b^{2}-a+b\right)^{2}}{n(a+b)^{2}(a+b-1)^{2}}
-\]
+\] \#\#\# (7) Create a function called sample\_Xs
+
+\subsubsection{\texorpdfstring{(8) Calculate
+E(X),Var(X),E(\bar\{X\}),Var(\bar\{X\})}{(8) Calculate E(X),Var(X),E(\{X\}),Var(\{X\})}}\label{calculate-exvarxexvarx}
+
+\begin{verbatim}
+## [1] "Expectation E(X): -0.5 \n"
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Expectation of samples E(bar{X}): -0.501 \n"
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Variance Var(X): 1.60714285714286 \n"
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Variance of samples Var(bar{X}): 1.60309503095031 \n"
+\end{verbatim}
+
+\subsubsection{(9) Compute the corresponding sample mean X based on X1,
+· · · ,
+Xn}\label{compute-the-corresponding-sample-mean-x-based-on-x1-xn}
+
+\subsubsection{(10) Create a scatter plot of the
+points}\label{create-a-scatter-plot-of-the-points}
+
+\begin{verbatim}
+## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## i Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.
+\end{verbatim}
+
+\includegraphics{TaskB_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\subsubsection{(11) Describe the relationship between the density of X
+and the function fµ,σ displayed in your plot. Try to explain the
+reason.}\label{describe-the-relationship-between-the-density-of-x-and-the-function-fuxb5ux3c3-displayed-in-your-plot.-try-to-explain-the-reason.}
+
+\begin{enumerate}
+\def\labelenumi{(\roman{enumi})}
+\tightlist
+\item
+  The blue points in the figure depicts the density distribution of the
+  mean of the discrete random variable X over the interval {[}µ - 3σ, µ
+  + 3σ{]}, satisfying the normal distribution.
+\item
+  The red curve in the figure is the kernel density estimate obtained by
+  representing the kernel density of the sample mean X within simulation
+  study with 50000 trials.
+\item
+  It can be seen that the two are very close to each other, proving that
+  the sampling distribution of the sample means tends to the standard
+  normal distribution when the sample size is large enough.
+\end{enumerate}
 
 \end{document}
