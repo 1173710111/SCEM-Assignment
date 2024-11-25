@@ -1,0 +1,775 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={TaskB1},
+  pdfauthor={zerofrom},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{TaskB1}
+\author{zerofrom}
+\date{2024-11-24}
+
+\begin{document}
+\maketitle
+
+\subsection{B.1}\label{b.1}
+
+\subsubsection{(1) Value of a}\label{value-of-a}
+
+Considering chat \(x\) follows the probability density function:
+
+\[
+p_{\lambda}(x)= \begin{cases}a e^{-\lambda(x-b)} & \text { if } x \geqslant b,  \tag{1}\\ 0 & \text { if } x<b,\end{cases}
+\]
+
+The probability density function \(p_{\lambda}(x)\) must follows:
+
+\[
+\begin{equation*}
+\int_{-\infty}^{\infty} p_{\lambda}(x) d x=1 \tag{2}
+\end{equation*}
+\]
+
+Since \(p_{\lambda}(x)=0\) when \(x<b\), it follows that:
+
+\[
+\begin{equation*}
+\int_{b}^{\infty} p_{\lambda}(x) d x=1 \tag{3}
+\end{equation*}
+\]
+
+Replacing expression (1) into expression (3) yields:
+
+\[
+\begin{equation*}
+\int_{b}^{\infty} a e^{-\lambda(x-b)} d x=1 \tag{4}
+\end{equation*}
+\]
+
+Assuming that \(u=x-b\), it can be obtained that:
+
+\[
+\begin{equation*}
+x=u+b, d x=d u \tag{5}
+\end{equation*}
+\]
+
+Assuming that \(x=b\), then \(u=0\), therefore the upper and lower
+limits of integration become \(0 \rightarrow \infty\), substituting
+expression \((s)\) :
+
+\[
+\begin{equation*}
+\int_{0}^{\infty} a e^{-\lambda u} d u=1 \tag{6}
+\end{equation*}
+\]
+
+Using the exponential integration formula:
+
+\[
+\begin{equation*}
+\int_{0}^{\infty} e^{-a u} d u=\frac{1}{a} \tag{7}
+\end{equation*}
+\]
+
+Thus:
+
+\[
+\begin{equation*}
+a \cdot \frac{1}{\lambda}=1 \tag{8}
+\end{equation*}
+\]
+
+The solution is:
+
+\[
+\begin{equation*}
+a=\frac{1}{\lambda} \tag{9}
+\end{equation*}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the value of a is
+\(\frac{1}{\lambda}\).}{In conclusion, the value of a is \textbackslash frac\{1\}\{\textbackslash lambda\}.}}\label{in-conclusion-the-value-of-a-is-frac1lambda.}
+
+\paragraph{\texorpdfstring{(2) i) Population Mean \(E[X]\)
+:}{(2) i) Population Mean E{[}X{]} :}}\label{i-population-mean-ex}
+
+From the definition of the mean, there is:
+
+\[
+\begin{equation*}
+E[x]=\int_{-\infty}^{\infty} x \cdot p_{\lambda}(x) d x \tag{1}
+\end{equation*}
+\]
+
+Replacing \(p_{\lambda}(x)\) and \(a=\lambda\) :
+
+\[
+\begin{equation*}
+E[x]=\int_{b}^{\infty} x \cdot \lambda e^{-\lambda(x-b)} d x \tag{2}
+\end{equation*}
+\]
+
+Assuming \(u=x-b\), then \(x=u+b\), and \(d x=d u\) :
+
+\[
+\begin{align*}
+E[X] &= \int_{0}^{\infty}(u + b) \cdot \lambda e^{-\lambda u} \, du \\
+     &= \lambda \cdot \int_{0}^{\infty} u e^{-\lambda u} \, du + \lambda b \int_{0}^{\infty} e^{-\lambda u} \, du \tag{3}
+\end{align*}
+\]
+
+Integral formula for exponential functions:
+
+\[
+\begin{equation*}
+\int_{0}^{\infty} e^{-a x} d x=\frac{1}{a}, \int_{0}^{\infty} x e^{-a x} d x=\frac{1}{a^{2}} \tag{4}
+\end{equation*}
+\]
+
+Replacing expression (t) into expression (3), there is:
+
+\[
+\begin{aligned}
+E[x] & =\lambda \cdot \frac{1}{\lambda^{2}}+\lambda b \cdot \frac{1}{\lambda} \\
+& =\frac{1}{\lambda}+b
+\end{aligned}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the population mean
+\(E[x]=\frac{1}{\lambda}+b\).}{In conclusion, the population mean E{[}x{]}=\textbackslash frac\{1\}\{\textbackslash lambda\}+b.}}\label{in-conclusion-the-population-mean-exfrac1lambdab.}
+
+\paragraph{\texorpdfstring{ii) Standard Deviation \(\sigma x\)
+:}{ii) Standard Deviation \textbackslash sigma x :}}\label{ii-standard-deviation-sigma-x}
+
+The standard deviation formula:
+
+\[
+\begin{equation*}
+\sigma x=\sqrt{\operatorname{Var}(x)}=\sqrt{E\left[x^{2}\right]-(E[x])^{2}} \tag{1}
+\end{equation*}
+\]
+
+From the derivation of \(E[x]\), it follows that:
+
+\[
+E[x]=\frac{1}{\lambda}+b \tag{2}
+\]
+
+The formula for \(E\left[x^{2}\right]\) is:
+
+\[
+\begin{equation*}
+E\left[x^{2}\right]=\int_{b}^{\infty} x^{2} \cdot p_{\lambda}(x) d x \tag{3}
+\end{equation*}
+\]
+
+Substituting \(P_{\lambda}(x)\) :
+
+\[
+\begin{equation*}
+E\left[x^{2}\right]=\int_{b}^{\infty} x^{2} \cdot \lambda e^{-\lambda(x-b)} d x \tag{4}
+\end{equation*}
+\]
+
+Assuming \(u=x-b\). then \(x=u+b\), and \(d x=d u\) :
+
+\[
+\begin{align*}
+E\left[x^{2}\right]= & \int_{0}^{\infty}(u+b)^{2} \cdot \lambda e^{-\lambda u} d u \\
+= & \lambda \int_{0}^{\infty}\left(u^{2}+2 b u+b^{2}\right) \cdot e^{-\lambda u} d u \\
+= & \lambda \int_{0}^{\infty} u^{2} e^{-\lambda u} d u+2 \lambda b \int_{0}^{\infty} u e^{-\lambda u} d u  +\lambda b^{2} \int_{0}^{\infty} e^{-\lambda u} d u \quad  \tag{5}
+\end{align*}
+\]
+
+Integrals formula for exponential functions:
+
+\[
+\begin{align*}
+& \int_{0}^{\infty} e^{-a x} d x=\frac{1}{a} \\
+& \int_{0}^{\infty} x e^{-a x} d x=\frac{1}{a^{2}} \\
+& \int_{0}^{\infty} x^{2} e^{-a x} d x=\frac{2}{a^{3}} \tag{6}
+\end{align*}
+\]
+
+Replacing formulas (6) into expression (5), there is:
+
+\[
+\begin{align*}
+E\left[x^{2}\right] & =\lambda \cdot \frac{2}{\lambda^{3}}+2 \lambda b \cdot \frac{1}{\lambda^{2}}+\lambda b^{2} \cdot \frac{1}{\lambda} \\
+& =\frac{2}{\lambda^{2}}+\frac{2 b}{\lambda}+b^{2} \tag{7}
+\end{align*}
+\]
+
+Replacing expression (2) and (7) into expression (1):
+
+\[
+\begin{align*}
+\sigma_{x} & =\sqrt{\left(\frac{2}{\lambda^{2}}+\frac{2 b}{\lambda}+b^{2}\right)-\left(\frac{1}{\lambda}+b\right)^{2}} \\
+& =\sqrt{\left(\frac{2}{\lambda^{2}}+\frac{2 b}{\lambda}+b^{2}\right)-\left(\frac{1}{\lambda^{2}}+\frac{2 b}{\lambda}+b^{2}\right)} \\
+& =\frac{1}{\lambda}
+\end{align*}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the standard deviation of
+\(X\) is
+\(\sigma_{x}=\frac{1}{\lambda}\).}{In conclusion, the standard deviation of X is \textbackslash sigma\_\{x\}=\textbackslash frac\{1\}\{\textbackslash lambda\}.}}\label{in-conclusion-the-standard-deviation-of-x-is-sigma_xfrac1lambda.}
+
+\paragraph{(3) i) Cumulative distribution function (CDF): Considering
+the definition of CDF, it follows
+that:}\label{i-cumulative-distribution-function-cdf-considering-the-definition-of-cdf-it-follows-that}
+
+\[
+\begin{equation*}
+F_{x}(x)=P(x \leqslant x)=\int_{-\infty}^{\infty} p_{x}(t) d t . \tag{1}
+\end{equation*}
+\]
+
+If \(x<b\), then \(p_{x}(t)=0\), thus there is:
+
+\[
+\begin{equation*}
+F_{X}(x)=\int_{-\infty}^{x} 0 d t=0 \tag{2}
+\end{equation*}
+\]
+
+If \(x \geqslant b\), then \(p_{x}(t)=\lambda e^{-\lambda(t-b)}\), thus
+there is:
+
+\[
+\begin{equation*}
+F_{X}(x)=\int_{b}^{x} \lambda e^{-\lambda(t-b)} d t \tag{3}
+\end{equation*}
+\]
+
+Assuming that \(a=t-b\), then \(t=u+b\). and \(d t=d u\), the upper and
+Cower limit of integration becomes \(0 \rightarrow x-b\).
+
+\[
+\begin{aligned}
+F_{X}(x) & =\int_{0}^{x-b} \lambda e^{-\lambda u} d u \\
+& =\lambda \cdot \int_{0}^{x-b} e^{-\lambda u} d u \\
+& =\lambda\left[-\frac{1}{\lambda} e^{-\lambda u}\right]_{0}^{x-b} \\
+& =\lambda \cdot\left(-\frac{1}{\lambda} e^{-\lambda(x-b)}+\frac{1}{\lambda} e^{0}\right) \\
+& =\lambda \cdot\left(-\frac{1}{\lambda} e^{-\lambda(x-b)}+\frac{1}{\lambda}\right) \\
+& =-e^{-\lambda(x-b)}+1 
+\end{aligned}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the cumulative
+distribution function for the random variable \(x\) is
+\(F_{x}(x)= \begin{cases}0, & \text { if } x<b \\ 1-e^{-x(x-b)}, & \text { if } x \geqslant b\end{cases}\)}{In conclusion, the cumulative distribution function for the random variable x is F\_\{x\}(x)= \textbackslash begin\{cases\}0, \& \textbackslash text \{ if \} x\textless b \textbackslash\textbackslash{} 1-e\^{}\{-x(x-b)\}, \& \textbackslash text \{ if \} x \textbackslash geqslant b\textbackslash end\{cases\}}}\label{in-conclusion-the-cumulative-distribution-function-for-the-random-variable-x-is-f_xx-begincases0-text-if-xb-1-e-xx-b-text-if-x-geqslant-bendcases}
+
+\paragraph{ii) Quartile Function (QF)}\label{ii-quartile-function-qf}
+
+Considering the CDF of random variable \(X\) :
+
+\[
+F_{X}(x)=\left\{\begin{array}{l}
+0, \text { if } x<b  \tag{1}\\
+1-e^{-\lambda(x-b),} \text { if } x \geqslant b
+\end{array}\right.
+\]
+
+Quartile Function \(Q(p)\) satisfies:
+
+\[
+\begin{equation*}
+F_{X}(Q(p))=p \text {, if } 0<p<1 \tag{2}
+\end{equation*}
+\]
+
+Replacing (1) into cl), it follows that:
+
+\[
+\begin{equation*}
+1-e^{-\lambda(x-b)}=p \tag{3}
+\end{equation*}
+\]
+
+Thus there is:
+
+\[
+\begin{equation*}
+e^{-\lambda(x-b)}=1-p \tag{4}
+\end{equation*}
+\]
+
+Taking the natural logarithm of both sides:
+
+\[
+\begin{equation*}
+-\lambda(x-b)=\ln (1-p) \tag{5}
+\end{equation*}
+\]
+
+Thus \[
+\begin{equation*}
+x=b-\frac{\ln (1-p)}{\lambda} \tag{6}
+\end{equation*}
+\] \#\#\# In conclusion, the Quartile Function of random variable \(X\)
+is \(Q(p)=b-\frac{\ln (1-p)}{\lambda}, 0<p<1\)
+
+\paragraph{\texorpdfstring{(4) Maxmum Likehood estimat
+\MLE:}{(4) Maxmum Likehood estimat :}}\label{maxmum-likehood-estimat}
+
+The definition of likehood function is:
+
+\[
+\begin{align*}
+L(\lambda) & =\prod_{i=1}^{n} p_{\lambda}\left(x_{i}\right) \\
+& =\prod_{i=1}^{n} \lambda e^{-\lambda\left(x_{i}-b\right)} \\
+& =\lambda^{n} \prod_{i=1}^{n} e^{-\lambda\left(x_{i}-b\right)} \\
+& =\lambda^{n} e^{-\lambda \sum_{i=1}^{n}\left(x_{i}-b\right)} \tag{1}
+\end{align*}
+\]
+
+Taking the natural logarithm of both sides:
+
+\[
+\begin{equation*}
+\ln L(\lambda)=n \ln \lambda-\lambda \sum_{i=1}^{n}\left(x_{i}-b\right) \tag{2}
+\end{equation*}
+\]
+
+Derivativing with respect to \(\lambda\) :
+
+\[
+\begin{equation*}
+\frac{d \ln L(\lambda)}{d \lambda}=\frac{n}{\lambda}-\sum_{i=1}^{n}\left(x_{i}-b\right) \tag{3}
+\end{equation*}
+\]
+
+Assuming that the derivative is zero, it follows that:
+
+\[
+\begin{equation*}
+\frac{n}{\lambda}-\sum_{i=1}^{n}\left(x_{i}-b\right)=0 \tag{4}
+\end{equation*}
+\]
+
+Calculating the value of \(\lambda\) is:
+
+\[
+\begin{equation*}
+\lambda=\frac{n}{\sum_{i=1}^{n}\left(x_{i-b}\right)} \tag{5}
+\end{equation*}
+\]
+
+\paragraph{\texorpdfstring{In conclusion, the maxmum likehood estimate
+for \(x\) is
+\(\lambda_{\text {MLE }}=\frac{n}{\sum_{i=1}^{n}\left(x_{i}-b\right)}\)}{In conclusion, the maxmum likehood estimate for x is \textbackslash lambda\_\{\textbackslash text \{MLE \}\}=\textbackslash frac\{n\}\{\textbackslash sum\_\{i=1\}\^{}\{n\}\textbackslash left(x\_\{i\}-b\textbackslash right)\}}}\label{in-conclusion-the-maxmum-likehood-estimate-for-x-is-lambda_text-mle-fracnsum_i1nleftx_i-bright}
+
+\subsubsection{(5) Given the sample, compute and display the maximum
+likelihood estimate λMLE of the parameter
+λ.}\label{given-the-sample-compute-and-display-the-maximum-likelihood-estimate-ux3bbmle-of-the-parameter-ux3bb.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Creating a lambda value calculation function}
+\NormalTok{lambda\_function }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, b)\{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(data)}
+  \CommentTok{\# Calculating the denominator: summing over x {-} b}
+\NormalTok{  sum\_i }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{{-}}\NormalTok{b)}
+  \CommentTok{\# Calculating lembda}
+\NormalTok{  lambda }\OtherTok{\textless{}{-}}\NormalTok{ n}\SpecialCharTok{/}\NormalTok{sum\_i}
+  \FunctionTok{return}\NormalTok{(lambda)}
+\NormalTok{\}}
+
+\CommentTok{\# Load Data}
+\NormalTok{supermarket\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"supermarket\_data\_2024.csv"}\NormalTok{)}
+\CommentTok{\# Set the number of sample}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(supermarket\_data)}
+\CommentTok{\# Set the constant b}
+\NormalTok{b }\OtherTok{\textless{}{-}}\DecValTok{300}
+
+\NormalTok{lambda\_mle }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(supermarket\_data}\SpecialCharTok{$}\NormalTok{TimeLength , b)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"The maximum likelihood estimate lambda\_MLE is: "}\NormalTok{,lambda\_mle))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The maximum likelihood estimate lambda_MLE is:  0.019884260798572"
+\end{verbatim}
+
+\subsubsection{(6) Compute the Bootstrap confidence
+interval}\label{compute-the-bootstrap-confidence-interval}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# set the random seed}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2024}\NormalTok{)}
+\CommentTok{\# set the number of resamples}
+\NormalTok{number\_resamples }\OtherTok{\textless{}{-}} \DecValTok{10000}
+
+\NormalTok{lambda\_resamples }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(number\_resamples)}
+\CommentTok{\# Sampling with replacement}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{number\_resamples)\{}
+\NormalTok{  sample\_data }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(supermarket\_data}\SpecialCharTok{$}\NormalTok{TimeLength , }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  lambda\_resamples[i] }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(sample\_data, b)}
+\NormalTok{\}}
+
+\CommentTok{\#Calculate the 95\% confidence interval}
+\NormalTok{  ci\_lower }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(lambda\_resamples, }\FloatTok{0.025}\NormalTok{)}
+\NormalTok{  ci\_upper }\OtherTok{\textless{}{-}} \FunctionTok{quantile}\NormalTok{(lambda\_resamples, }\FloatTok{0.975}\NormalTok{)}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"The Bootstrap confidence interval is: ["}\NormalTok{,ci\_lower,}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{,ci\_upper,}\StringTok{\textquotesingle{}]}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The Bootstrap confidence interval is: [ 0.0191115894121709 , 0.0206792527343937 ]\n"
+\end{verbatim}
+
+\subsubsection{(7)) Conduct a simulation study to explore the behaviour
+of the maximum likelihood estimator λMLE for λ on simulated data X1, · ·
+· ,
+Xn}\label{conduct-a-simulation-study-to-explore-the-behaviour-of-the-maximum-likelihood-estimator-ux3bbmle-for-ux3bb-on-simulated-data-x1-xn}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simulation parameters}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2024}\NormalTok{)}
+\NormalTok{lambda\_simulation }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{b\_simulation }\OtherTok{\textless{}{-}} \FloatTok{0.01}
+\NormalTok{sampleSize\_simulation }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{5000}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
+\NormalTok{repetition\_simulation }\OtherTok{\textless{}{-}} \DecValTok{100}
+
+\CommentTok{\# Simulation results}
+\NormalTok{simulation\_results }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{SampleSize =}\NormalTok{ sampleSize\_simulation, }\AttributeTok{MSE =} \FunctionTok{numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(sampleSize\_simulation)))}
+
+
+\CommentTok{\# Start simulation}
+\NormalTok{index }\OtherTok{\textless{}{-}} \DecValTok{1}
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in}\NormalTok{ sampleSize\_simulation)\{}
+\NormalTok{  lambda\_estimates}\OtherTok{\textless{}{-}}\FunctionTok{numeric}\NormalTok{(repetition\_simulation)}
+  \CommentTok{\#For each sample size, consider 100 trials.}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{repetition\_simulation)\{}
+\NormalTok{    sample\_data }\OtherTok{\textless{}{-}} \FunctionTok{rexp}\NormalTok{(n, }\AttributeTok{rate =}\NormalTok{ lambda\_simulation) }\SpecialCharTok{+}\NormalTok{ b\_simulation}
+\NormalTok{    lambda\_estimates[i] }\OtherTok{\textless{}{-}} \FunctionTok{lambda\_function}\NormalTok{(sample\_data,b\_simulation)}
+\NormalTok{  \}}
+  \CommentTok{\#Calculate mean and Mean Squared Error(MSE)}
+\NormalTok{  mse }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{((lambda\_estimates}\SpecialCharTok{{-}}\NormalTok{lambda\_simulation)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{  simulation\_results[index, }\StringTok{"MSE"}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ mse}
+\NormalTok{  index }\OtherTok{\textless{}{-}}\NormalTok{ index}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{\}}
+
+\CommentTok{\#Check the result}
+\FunctionTok{head}\NormalTok{(simulation\_results,}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   SampleSize        MSE
+## 1        100 0.04507438
+## 2        110 0.03664986
+## 3        120 0.03907616
+## 4        130 0.03197187
+## 5        140 0.02650689
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Plotting results of the simulation}
+\FunctionTok{ggplot}\NormalTok{(simulation\_results,}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{SampleSize, }\AttributeTok{y=}\NormalTok{MSE))}\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x=}\StringTok{"Sample Size"}\NormalTok{, }\AttributeTok{y=}\StringTok{"Mean Squared Error"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{TaskB_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\subsection{B2}\label{b2}
+
+\subsubsection{(1) The formula for the probability mass
+function}\label{the-formula-for-the-probability-mass-function}
+
+The range of possible values of the discrete ranom variable \(x\) is:
+
+\[
+x \in\{-2,0,2\}
+\]
+
+Event 1: Draw 2 blue balls \((X=-2)\)
+
+\[
+\begin{aligned}
+& C(b, 2)=\frac{b(b-1)}{2}, C(a+b, 2)=\frac{(a+b)(a+b-1)}{2} \\
+& \therefore P(x=-2)=\frac{C(b, 2)}{C(a+b, 2)}=\frac{b(b-1)}{(a+b)(a+b-1)}
+\end{aligned}
+\]
+
+Event 2: Draw 1 red ball and 1 blue ball \((x=0)\)
+
+\[
+\begin{aligned}
+& C(a, 1) \cdot C(b, 1)=a \cdot b \\
+\therefore  & P(x=0)=\frac{C(a, 1) C(b, 1)}{C(a+b, 2)}=\frac{a b}{(a+b)(a+b-1)}
+\end{aligned}
+\]
+
+Event 3: Draw 2 red balls \((x=2)\)
+
+\[
+\begin{aligned}
+C(a, 2) & =\frac{a(a-1)}{2} \\
+\therefore P(x=2) & =\frac{C(a, 2)}{C(a+b, 2)}=\frac{a(a-1)}{(a+b)(a+b-1)}
+\end{aligned}
+\]
+
+\subsubsection{In conclustion, the formula for the probability mass
+function
+pros:}\label{in-conclustion-the-formula-for-the-probability-mass-function-pros}
+
+\[
+P(x)= \begin{cases}\frac{b(b-1)}{(a+b)(a+b-1)} & , x=-2 \\ \frac{a b}{(a+b)(a+b-1)} & , x=0 \\ \frac{a(a-1)}{(a+b)(a+b-1)} & , x=2\end{cases}
+\]
+
+\subsubsection{(2) The expression of the
+expectation}\label{the-expression-of-the-expectation}
+
+According to the expectation formula for random variables:
+
+\[
+\begin{equation*}
+E(x)=\sum_{x \in\{-2,0,2\}} x \cdot p(x=x) \tag{1}
+\end{equation*}
+\]
+
+Replacing \(P(x)\) into (1) , there is:
+
+\[
+\begin{align*}
+E(x) & =-2 \cdot \frac{b(b-1)}{(a+b)(a+b-1)}+2 \cdot \frac{a(a-1)}{(a+b)(a+b-1)} \\
+& =\frac{2 a(a-1)-2 b(b-1)}{(a+b)(a+b-1)} \\
+& =\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)} \tag{2}
+\end{align*}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the expectation \(E(X)\)
+of \(X\)
+is:}{In conclusion, the expectation E(X) of X is:}}\label{in-conclusion-the-expectation-ex-of-x-is}
+
+\[
+E(X)=\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}
+\]
+
+\subsubsection{(3)The expression of the variance
+Var(X)}\label{the-expression-of-the-variance-varx}
+
+According to the formula of \(E\left(X^{2}\right)\) :
+
+\[
+\begin{equation*}
+E\left(x^{2}\right)=\int_{x \in\{-10,2\}} x^{2} \cdot P(x=x) \tag{1}
+\end{equation*}
+\]
+
+Replacing \(P(x)\) in to \((1)\), there is:
+
+\[
+\begin{align*}
+E\left(x^{2}\right) & =4 \cdot \frac{b(b-1)}{(a+b)(a+b-1)}+4 \cdot \frac{a(a-1)}{(a+b)(a+b-1)} \\
+& =\frac{4\left(a^{2}+b^{2}-a-b\right)}{(a+b)(a+b-1)} \tag{2}
+\end{align*}
+\]
+
+According to the formula of \(\operatorname{Var}(X)\) :
+
+\[
+\begin{equation*}
+\operatorname{Var}(x)=E\left(x^{2}\right)-[E(x)]^{2} \tag{3}
+\end{equation*}
+\]
+
+Replacing \(E\left(x^{2}\right)\) and \(E(x)\) into (3), it follows
+that:
+
+\[
+\begin{aligned}
+\operatorname{Var}(x) & =\frac{4\left(a^{2}+b^{2}-a-b\right)}{(a+b)(a+b-1)}-\left[\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}\right]^{2} \\
+& =\frac{4\left(a^{2}+b^{2}-a-b\right)(a+b)(a+b-1)-4\left(a^{2}-b^{2}-a+b\right)^{2}}{(a+b)^{2}(a+b-1)^{2}}
+\end{aligned}
+\] \#\#\# In conclusion, the expression of the variance Var(X) is:\\
+\[
+\begin{aligned}
+\operatorname{Var}(x) & =\frac{4\left(a^{2}+b^{2}-a-b\right)(a+b)(a+b-1)-4\left(a^{2}-b^{2}-a+b\right)^{2}}{(a+b)^{2}(a+b-1)^{2}}
+\end{aligned}
+\] \#\#\# (4)Write a function called compute\_expectation\_X that takes
+a and b as inputs and outputs the expectation E(X). Write a function
+called compute\_variance\_X that takes a and b as input and outputs the
+variance Var(X).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The function of E(X)}
+\NormalTok{compute\_expectation\_X }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(a,b)\{}
+\NormalTok{  f1 }\OtherTok{\textless{}{-}} \DecValTok{2}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{+}\NormalTok{b)}
+\NormalTok{  f2 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{b}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{  expectation }\OtherTok{=}\NormalTok{ f1}\SpecialCharTok{/}\NormalTok{f2}
+  \FunctionTok{return}\NormalTok{(expectation)}
+\NormalTok{\}}
+
+\CommentTok{\# The function of Var(x)}
+\NormalTok{compute\_variance\_X }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(a,b)\{}
+  \CommentTok{\#f1 \textless{}{-} (a + b) * (a + b {-} 1)                }
+  \CommentTok{\#f2 \textless{}{-} 4 * (a * (a {-} 1) + b * (b {-} 1)) / f1  }
+  \CommentTok{\#f3 \textless{}{-} 4 * (a\^{}2 {-} b\^{}2 {-} a + b)\^{}2 / f1\^{}2  }
+  \CommentTok{\#variance \textless{}{-} f2{-}f3           }
+\NormalTok{  f1 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{(a}\SpecialCharTok{+}\NormalTok{b}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{  f2 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{{-}}\NormalTok{b)}\SpecialCharTok{*}\NormalTok{f1}
+\NormalTok{  f3 }\OtherTok{\textless{}{-}}\NormalTok{ (a}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{b}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{a}\SpecialCharTok{+}\NormalTok{b)}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{  variance }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{4}\SpecialCharTok{*}\NormalTok{f2}\DecValTok{{-}4}\SpecialCharTok{*}\NormalTok{f3)}\SpecialCharTok{/}\NormalTok{f1}\SpecialCharTok{\^{}}\DecValTok{2}
+  \FunctionTok{return}\NormalTok{(variance)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{(5) According to the linear nature of the mean of a
+random
+variable:}\label{according-to-the-linear-nature-of-the-mean-of-a-random-variable}
+
+\[
+\begin{equation*}
+E(\bar{X})=E\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right)=\frac{1}{n} \sum_{i=1}^{n} E\left(X_{i}\right) \tag{1}
+\end{equation*}
+\]
+
+\(\because X_{i}\) are i.i.d., thus \(E\left(X_{i}\right)=E(x)\), thus:
+
+\[
+\begin{equation*}
+E(\bar{X})=\frac{1}{n} \cdot n \cdot E(X)=E(X) \tag{2}
+\end{equation*}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the expression of the
+expectation of the random variable \(\bar{x}\) is:
+\(E(\bar{x})=\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}\)}{In conclusion, the expression of the expectation of the random variable \textbackslash bar\{x\} is: E(\textbackslash bar\{x\})=\textbackslash frac\{2\textbackslash left(a\^{}\{2\}-b\^{}\{2\}-a+b\textbackslash right)\}\{(a+b)(a+b-1)\}}}\label{in-conclusion-the-expression-of-the-expectation-of-the-random-variable-barx-is-ebarxfrac2lefta2-b2-abrightabab-1}
+
+\#\#\#(6) Considering the effect of a linear transformation of a random
+variable on the variance :
+
+\[
+\begin{equation*}
+& \operatorname{Var}(a x+b)=a^{2} \operatorname{Var}(x)  \tag{1}\\
+\end{equation*}
+\] thus: \[
+\begin{align*}
+&\operatorname{Var}(\bar{x})=\operatorname{Var}\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right) \\
+&=\frac{1}{n^{2}} \operatorname{Var}\left(\sum_{i=1}^{n} X_{i}\right) \\
+&=\frac{1}{n^{2}} \cdot n \operatorname{Var}(X) \\
+&=\frac{1}{n} \operatorname{Var}(X) \tag{2}
+\end{align*}
+\]
+
+\subsubsection{\texorpdfstring{In conclusion, the expression of the
+variance of the random variable \(\bar{x}\)
+is}{In conclusion, the expression of the variance of the random variable \textbackslash bar\{x\} is}}\label{in-conclusion-the-expression-of-the-variance-of-the-random-variable-barx-is}
+
+\[
+\operatorname{Var}(\bar{X})=\frac{4\left(a^{2}+b^{2}-a-b\right)(a+b)(a+b-1)-4\left(a^{2}-b^{2}-a+b\right)^{2}}{n(a+b)^{2}(a+b-1)^{2}}
+\]
+
+\end{document}
