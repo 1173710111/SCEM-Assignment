@@ -3,10 +3,11 @@ title: "TaskB1"
 author: "zerofrom"
 date: "`r Sys.Date()`"
 output:
-  pdf_document: null
-  latex_engine: xelatex
+  word_document: default
   html_document:
-    df_print: paged
+    mathjax: default
+  pdf_document:
+    latex_engine: xelatex
 ---
 
 ```{r setup, include=FALSE}
@@ -24,65 +25,65 @@ $$
 The probability density function $p_{\lambda}(x)$ must follows:
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{-\infty}^{\infty} p_{\lambda}(x) d x=1 \tag{2}
-\end{equation*}
+\end{equation}
 $$
 
 Since $p_{\lambda}(x)=0$ when $x<b$, it follows that:
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{b}^{\infty} p_{\lambda}(x) d x=1 \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing expression (1) into expression (3) yields:
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{b}^{\infty} a e^{-\lambda(x-b)} d x=1 \tag{4}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming that $u=x-b$, it can be obtained that:
 
 $$
-\begin{equation*}
+\begin{equation}
 x=u+b, d x=d u \tag{5}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming that $x=b$, then $u=0$, therefore the upper and lower limits of integration become $0 \rightarrow \infty$, substituting expression $(s)$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{0}^{\infty} a e^{-\lambda u} d u=1 \tag{6}
-\end{equation*}
+\end{equation}
 $$
 
 Using the exponential integration formula:
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{0}^{\infty} e^{-a u} d u=\frac{1}{a} \tag{7}
-\end{equation*}
+\end{equation}
 $$
 
 Thus:
 
 $$
-\begin{equation*}
+\begin{equation}
 a \cdot \frac{1}{\lambda}=1 \tag{8}
-\end{equation*}
+\end{equation}
 $$
 
 The solution is:
 
 $$
-\begin{equation*}
+\begin{equation}
 a=\frac{1}{\lambda} \tag{9}
-\end{equation*}
+\end{equation}
 $$
 
 ### In conclusion, the value of a is $\frac{1}{\lambda}$.      
@@ -93,17 +94,17 @@ $$
 From the definition of the mean, there is:
 
 $$
-\begin{equation*}
+\begin{equation}
 E[x]=\int_{-\infty}^{\infty} x \cdot p_{\lambda}(x) d x \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing $p_{\lambda}(x)$ and $a=\lambda$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 E[x]=\int_{b}^{\infty} x \cdot \lambda e^{-\lambda(x-b)} d x \tag{2}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming $u=x-b$, then $x=u+b$, and $d x=d u$ :
@@ -118,9 +119,9 @@ $$
 Integral formula for exponential functions:
 
 $$
-\begin{equation*}
+\begin{equation}
 \int_{0}^{\infty} e^{-a x} d x=\frac{1}{a}, \int_{0}^{\infty} x e^{-a x} d x=\frac{1}{a^{2}} \tag{4}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing expression (t) into expression (3), there is:
@@ -139,9 +140,9 @@ $$
 The standard deviation formula:
 
 $$
-\begin{equation*}
+\begin{equation}
 \sigma x=\sqrt{\operatorname{Var}(x)}=\sqrt{E\left[x^{2}\right]-(E[x])^{2}} \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 From the derivation of $E[x]$, it follows that:
@@ -153,17 +154,17 @@ $$
 The formula for $E\left[x^{2}\right]$ is:
 
 $$
-\begin{equation*}
+\begin{equation}
 E\left[x^{2}\right]=\int_{b}^{\infty} x^{2} \cdot p_{\lambda}(x) d x \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Substituting $P_{\lambda}(x)$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 E\left[x^{2}\right]=\int_{b}^{\infty} x^{2} \cdot \lambda e^{-\lambda(x-b)} d x \tag{4}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming $u=x-b$. then $x=u+b$, and $d x=d u$ :
@@ -210,25 +211,25 @@ $$
 #### (3) i) Cumulative distribution function (CDF): Considering the definition of CDF, it follows that:
 
 $$
-\begin{equation*}
+\begin{equation}
 F_{x}(x)=P(x \leqslant x)=\int_{-\infty}^{\infty} p_{x}(t) d t . \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 If $x<b$, then $p_{x}(t)=0$, thus there is:
 
 $$
-\begin{equation*}
+\begin{equation}
 F_{X}(x)=\int_{-\infty}^{x} 0 d t=0 \tag{2}
-\end{equation*}
+\end{equation}
 $$
 
 If $x \geqslant b$, then $p_{x}(t)=\lambda e^{-\lambda(t-b)}$, thus there is:
 
 $$
-\begin{equation*}
+\begin{equation}
 F_{X}(x)=\int_{b}^{x} \lambda e^{-\lambda(t-b)} d t \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming that $a=t-b$, then $t=u+b$. and $d t=d u$, the upper and Cower limit of integration becomes $0 \rightarrow x-b$.
@@ -263,40 +264,40 @@ $$
 Quartile Function $Q(p)$ satisfies:
 
 $$
-\begin{equation*}
+\begin{equation}
 F_{X}(Q(p))=p \text {, if } 0<p<1 \tag{2}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing (1) into cl), it follows that:
 
 $$
-\begin{equation*}
+\begin{equation}
 1-e^{-\lambda(x-b)}=p \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Thus there is:
 
 $$
-\begin{equation*}
+\begin{equation}
 e^{-\lambda(x-b)}=1-p \tag{4}
-\end{equation*}
+\end{equation}
 $$
 
 Taking the natural logarithm of both sides:
 
 $$
-\begin{equation*}
+\begin{equation}
 -\lambda(x-b)=\ln (1-p) \tag{5}
-\end{equation*}
+\end{equation}
 $$
 
 Thus 
 $$
-\begin{equation*}
+\begin{equation}
 x=b-\frac{\ln (1-p)}{\lambda} \tag{6}
-\end{equation*}
+\end{equation}
 $$
 ### In conclusion, the Quartile Function of random variable $X$ is $Q(p)=b-\frac{\ln (1-p)}{\lambda}, 0<p<1$    
 
@@ -316,33 +317,33 @@ $$
 Taking the natural logarithm of both sides:
 
 $$
-\begin{equation*}
+\begin{equation}
 \ln L(\lambda)=n \ln \lambda-\lambda \sum_{i=1}^{n}\left(x_{i}-b\right) \tag{2}
-\end{equation*}
+\end{equation}
 $$
 
 Derivativing with respect to $\lambda$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 \frac{d \ln L(\lambda)}{d \lambda}=\frac{n}{\lambda}-\sum_{i=1}^{n}\left(x_{i}-b\right) \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Assuming that the derivative is zero, it follows that:
 
 $$
-\begin{equation*}
+\begin{equation}
 \frac{n}{\lambda}-\sum_{i=1}^{n}\left(x_{i}-b\right)=0 \tag{4}
-\end{equation*}
+\end{equation}
 $$
 
 Calculating the value of $\lambda$ is:
 
 $$
-\begin{equation*}
+\begin{equation}
 \lambda=\frac{n}{\sum_{i=1}^{n}\left(x_{i-b}\right)} \tag{5}
-\end{equation*}
+\end{equation}
 $$
 
 #### In conclusion, the maxmum likehood estimate for $x$ is $\lambda_{\text {MLE }}=\frac{n}{\sum_{i=1}^{n}\left(x_{i}-b\right)}$
@@ -475,9 +476,9 @@ $$
 According to the expectation formula for random variables:
 
 $$
-\begin{equation*}
+\begin{equation}
 E(X)=\sum_{x \in\{-2,0,2\}} x \cdot P(X=x) \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing $P(x)$ into (1) , there is:
@@ -500,9 +501,9 @@ $$
 According to the formula of $E\left(X^{2}\right)$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 E\left(X^{2}\right)=\sum_{x \in\{-2,0,2\}} x^{2} \cdot P(X=x) \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing $P(x)$ in to $(1)$, there is:
@@ -517,9 +518,9 @@ $$
 According to the formula of $\operatorname{Var}(X)$ :
 
 $$
-\begin{equation*}
+\begin{equation}
 \operatorname{Var}(x)=E\left(x^{2}\right)-[E(x)]^{2} \tag{3}
-\end{equation*}
+\end{equation}
 $$
 
 Replacing $E\left(x^{2}\right)$ and $E(x)$ into (3), it follows that:
@@ -564,17 +565,17 @@ compute_variance_X <- function(a,b){
 According to the linear nature of the mean of a random variable:
 
 $$
-\begin{equation*}
+\begin{equation}
 E(\bar{X})=E\left(\frac{1}{n} \sum_{i=1}^{n} X_{i}\right)=\frac{1}{n} \sum_{i=1}^{n} E\left(X_{i}\right) \tag{1}
-\end{equation*}
+\end{equation}
 $$
 
 $\because X_{i}$ are i.i.d., thus $E\left(X_{i}\right)=E(x)$, thus:
 
 $$
-\begin{equation*}
+\begin{equation}
 E(\bar{X})=\frac{1}{n} \cdot n \cdot E(X)=E(X) \tag{2} 
-\end{equation*}
+\end{equation}
 $$    
  
 ### In conclusion, the expression of the expectation of the random variable $\bar{x}$ is: $E(\bar{X})=\frac{2\left(a^{2}-b^{2}-a+b\right)}{(a+b)(a+b-1)}$
@@ -583,9 +584,9 @@ $$
 Considering the effect of a linear transformation of a random variable on the variance :
 
 $$
-\begin{equation*}
+\begin{equation}
 \operatorname{Var}(a X+b)=a^{2} \operatorname{Var}(X)  \tag{1}\\
-\end{equation*}
+\end{equation}
 $$
 thus:
 $$

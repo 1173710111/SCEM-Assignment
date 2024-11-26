@@ -1,0 +1,150 @@
+---
+title: "TaskC"
+author: "zerofrom"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    df_print: paged
+  latex_engine: xelatex
+  pdf_document: null
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(ggplot2)
+library(dunn.test)
+```
+
+## Simutation Study
+```{r}
+# Simulation function, input each group of sample data, return p_value
+simulate_kruskal <- function(...){
+  groups <- list(...)
+  if (length(groups)<2){
+    stop("There should be at least two groups of data.")
+  }
+  # Create data frame that integrate group data and group labels
+  combined_data <- data.frame(
+    value = unlist(groups),
+    group = factor(rep(seq_along(groups), sapply(groups, length)))
+  )
+  # Kruskal-Wallis test
+  kruskal_result <- kruskal.test(value~group, data=combined_data)
+  return(kruskal_result$p.value)
+}
+
+
+# Set parameters
+set.seed(2024)
+group_size <- 100
+num_groups <- length(group_size)
+alpha_levels <- c(0.005, 0.01,0.025, 0.05, 0.1)
+num_levels <-length(alpha_levels)
+num_trials <- 5000
+
+# Initialize the frame to store the results
+simulation_data <- data.frame(
+  alpha_levels = alpha_levels,
+  type_I_error = numeric(num_levels),
+  error_probability = numeric(num_levels)
+)
+
+# Start Simulation
+for (i in 1:num_trials){
+  # H0: There is no difference among sample groups.
+  # Simulated data from the same distribution
+  group1 <- rexp(group_size, rate = 1 )
+  group2 <- rexp(group_size, rate = 1 )
+  group3 <- rexp(group_size, rate = 1 )
+  group4 <- rexp(group_size, rate = 1 )
+  p_value <- simulate_kruskal(group1,group2,group3,group4)
+  for (j in 1:num_levels){
+    num_error <- simulation_data$type_I_error[j]
+    if (p_value <= alpha_levels[j]){
+      num_error <- num_error+1
+      simulation_data$type_I_error[j] <- num_error
+    }
+  }
+}
+# Calculate the probability of the type I error for each alpha level
+for (j in 1:num_levels){
+  rate <- simulation_data$type_I_error[j]/num_trials
+  simulation_data$error_probability[j] <- rate
+}
+print(simulation_data)
+
+```
+
+## Step 1: Data preparation
+```{r}
+# Load data
+game_data <- read.csv("data\\vgsales.csv")
+# Filter the desired columns: independent variables, dependent variables
+game_filter_data <- game_data %>%
+  filter(!is.na(Genre)) %>%
+  select('Genre','Global_Sales')
+
+# Grouping statistics, sorting
+# Filter the top Genres with the highest number
+top_genres <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(Count=n()) %>%
+  arrange(desc(Count)) %>%
+  slice_head(n=4) 
+
+# Data filtering: filtering data and valid data
+game_filter_data <- game_filter_data %>%
+  filter(Genre %in% top_genres$Genre & !is.na(Global_Sales))
+#print(nrow(game_filter_data))
+```
+
+### Setp 2:  Data visualisation and Intuitive understanding of data characteristics
+```{r}
+ggplot(game_filter_data,
+       aes(x=Genre, y=Global_Sales))+
+  geom_boxplot()+
+  labs(
+    x = "Game Genre",
+    y = "Global Sales(in millions)"
+  )+
+  theme_minimal()
+```
+
+### Step 3: Normality test
+```{r}
+shapiro_results <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(p_value = shapiro.test(Global_Sales)$p.value)
+
+print(shapiro_results)
+
+# On comparison, the p-value for each group was less than 0.05, which does not satisfy normal distribution.
+# Therefore, a logarithmic transformation was done on the source data.
+game_filter_data <- game_filter_data %>%
+  mutate(Log_Global_Sales = log(Global_Sales+1))
+
+# Re-testing normality
+shapiro_results <- game_filter_data %>%
+  group_by(Genre) %>%
+  summarise(p_value = shapiro.test(Log_Global_Sales)$p.value)
+
+print(shapiro_results)
+
+# Data still do not satisfy normal distribution.
+# Use of non-parametric tests.
+```
+
+### Step 4: Kruskal-Wallis test
+```{r}
+Genre_Group <- factor(game_filter_data$Genre)
+Global_Sales <- game_filter_data$Global_Sales
+kruskal_result <- kruskal.test(Global_Sales~Genre_Group)
+print(kruskal_result)
+```
+
+### Step 5: Dunn's Test
+```{r}
+dunn_test <- dunn.test(Global_Sales,Genre_Group, method="bonferroni")
+print(dunn_test)
+```
